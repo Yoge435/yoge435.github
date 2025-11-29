@@ -1,0 +1,144 @@
+import { useState } from "react";
+
+export default function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const loginHandler = (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoggedIn(true);
+  };
+
+  const logoutHandler = () => {
+    setLoggedIn(false);
+  };
+
+  // ---------------- LOGIN PAGE ----------------
+  if (!loggedIn) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="w-[400px] bg-white p-8 rounded-xl shadow-lg">
+          <h1 className="text-3xl font-bold text-center text-blue-600">
+            Student Login
+          </h1>
+          <p className="text-center text-gray-500 mt-1">
+            Login to access your student portal
+          </p>
+
+          <form onSubmit={loginHandler} className="mt-6 space-y-4">
+            <div>
+              <label className="block text-gray-700 font-medium">Email</label>
+              <input
+                type="email"
+                required
+                className="w-full p-3 border rounded-lg focus:ring focus:ring-blue-300"
+                placeholder="Enter your email"
+              />
+            </div>
+
+            <div>
+              <label className="block text-gray-700 font-medium">
+                Password
+              </label>
+              <input
+                type="password"
+                required
+                className="w-full p-3 border rounded-lg focus:ring focus:ring-blue-300"
+                placeholder="Enter your password"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700"
+            >
+              Login
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
+  // ---------------- STUDENT PORTAL PAGE ----------------
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Top Navbar */}
+      <nav className="bg-blue-600 text-white p-4 flex justify-between items-center">
+        <h1 className="text-2xl font-semibold">Student Portal</h1>
+
+        <button
+          onClick={logoutHandler}
+          className="bg-red-500 px-4 py-2 rounded-lg hover:bg-red-600"
+        >
+          Logout
+        </button>
+      </nav>
+
+      {/* Portal Content */}
+      <div className="p-6">
+        <h2 className="text-2xl font-bold">Welcome, Student 👋</h2>
+        <p className="text-gray-600 mt-1">
+          Here is your dashboard with all academic details.
+        </p>
+
+        {/* Cards Grid */}
+        <div className="grid grid-cols-3 gap-6 mt-8">
+
+          {/* Profile Card */}
+          <div className="bg-white p-6 rounded-xl shadow">
+            <h3 className="text-xl font-semibold">Profile</h3>
+            <p className="text-gray-500 mt-2">View your personal details.</p>
+            <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg">
+              Open
+            </button>
+          </div>
+
+          {/* Courses Card */}
+          <div className="bg-white p-6 rounded-xl shadow">
+            <h3 className="text-xl font-semibold">My Courses</h3>
+            <p className="text-gray-500 mt-2">Check your registered courses.</p>
+            <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg">
+              Open
+            </button>
+          </div>
+
+          {/* Attendance Card */}
+          <div className="bg-white p-6 rounded-xl shadow">
+            <h3 className="text-xl font-semibold">Attendance</h3>
+            <p className="text-gray-500 mt-2">View attendance report.</p>
+            <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg">
+              Open
+            </button>
+          </div>
+
+          {/* Marks Card */}
+          <div className="bg-white p-6 rounded-xl shadow">
+            <h3 className="text-xl font-semibold">Marks</h3>
+            <p className="text-gray-500 mt-2">See exam marks and grades.</p>
+            <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg">
+              Open
+            </button>
+          </div>
+
+          {/* Fees Card */}
+          <div className="bg-white p-6 rounded-xl shadow">
+            <h3 className="text-xl font-semibold">Fee Status</h3>
+            <p className="text-gray-500 mt-2">Check pending and paid fees.</p>
+            <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg">
+              Open
+            </button>
+          </div>
+
+          {/* Timetable Card */}
+          <div className="bg-white p-6 rounded-xl shadow">
+            <h3 className="text-xl font-semibold">Timetable</h3>
+            <p className="text-gray-500 mt-2">View class timetable.</p>
+            <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg">
+              Open
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
